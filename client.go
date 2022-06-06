@@ -2,7 +2,7 @@ package sg
 
 import (
 	"bytes"
-	"errors"
+	"fmt"
 	"net/http"
 )
 
@@ -33,7 +33,7 @@ func (c *Client) Send(mail *Mail) error {
 	dumpResponse(c.Tracer, response)
 
 	if response.StatusCode > 299 {
-		return errors.New("bad request")
+		return fmt.Errorf("bad response code: %s", response.Status)
 	}
 
 	return nil

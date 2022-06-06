@@ -44,7 +44,8 @@ func (s *SparkPostService) Serialize(m *Mail) ([]byte, error) {
 
 // NewSparkPostClient creates a new client with a SparkPost API key.
 // default api url "https://api.sparkpost.com/api/v1/transmissions?num_rcpt_errors=3"
-func NewSparkPostClient(apiKey string, apiURL string, tracer Tracer, Options H) Sender {
+// since we are only working with transmissions api in this package.
+func NewSparkPostClient(apiKey string, apiURL string, Options H, tracer Tracer) Sender {
 	return &Client{
 		APIKey:  apiKey,
 		APIURL:  apiURL,

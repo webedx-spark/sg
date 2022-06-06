@@ -33,7 +33,7 @@ func (c *Client) Send(mail *Mail) error {
 	dumpResponse(c.Tracer, response)
 
 	if response.StatusCode > 299 {
-		return fmt.Errorf("bad response code: [%s] %s", response.StatusCode, response.Status)
+		return fmt.Errorf("bad response code: %s", response.Status)
 	}
 
 	return nil

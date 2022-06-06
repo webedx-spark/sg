@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	client   = NewSendGridClient(os.Getenv("SG_API_KEY"))
+	client   = NewSendGridClient(os.Getenv("SG_API_KEY"), nil)
 	clientMu = sync.Mutex{}
 )
 

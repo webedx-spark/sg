@@ -20,19 +20,20 @@ type Client struct {
 func (c *Client) Send(mail *Mail) error {
 	request, err := c.buildRequest(mail)
 	if err != nil {
+		dumpRequest(c.Tracer, request)
 		return err
 	}
-
-	dumpRequest(c.Tracer, request)
 
 	response, err := c.client.Do(request)
 	if err != nil {
+		dumpRequest(c.Tracer, request)
+		dumpResponse(c.Tracer, response)
 		return err
 	}
 
-	dumpResponse(c.Tracer, response)
-
 	if response.StatusCode > 299 {
+		dumpRequest(c.Tracer, request)
+		dumpResponse(c.Tracer, response)
 		return fmt.Errorf("bad response code: %s", response.Status)
 	}
 
